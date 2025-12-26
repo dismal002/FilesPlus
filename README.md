@@ -39,8 +39,9 @@ Thank you if you choose to include Material Files in your custom ROM! However si
 - Please make sure this app can be uninstalled or at least disabled. Some users may not want this app for a variety of reasons, and get very upset when they can't remove it.
 
 ## License
-
+    Copyright (c) 2018 Hai Zhang
     Copyright (C) 2025 Dismal
+    
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
