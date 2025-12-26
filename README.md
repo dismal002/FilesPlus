@@ -1,9 +1,7 @@
-# Material Files
-
-[本文中文版](README_zh-CN.md)
+# Files Plus
 
 
-An open source Material Design file manager, for Android 5.0+.
+An open source Material Design file manager based on Material Files for Android 5.0+.
 
 
 ## Preview
