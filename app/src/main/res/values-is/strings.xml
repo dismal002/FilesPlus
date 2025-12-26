@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ImpliedQuantity">
 
-    <string name="app_name">Material-skrár</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Loka</string>
     <string name="copy">Afrita</string>
@@ -670,9 +670,9 @@
     <string name="about_version_title">Útgáfa</string>
     <string name="about_github_title">Skoða á GitHub</string>
     <string name="about_licenses_title">Notkunarleyfi</string>
-    <string name="about_privacy_policy_title">Persónuverndarstefna</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Höfundur</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Fylgjast með á GitHub</string>
     <string name="about_author_twitter_title">Fylgjast með á Twitter</string>
 </resources>

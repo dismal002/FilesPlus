@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ImpliedQuantity">
 
-    <string name="app_name">Material Failai</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Uždaryti</string>
     <string name="copy">Kopijuoti</string>
@@ -629,9 +629,9 @@
     <string name="about_version_title">Versija</string>
     <string name="about_github_title">Peržiūrėti GitHub svetainėje</string>
     <string name="about_licenses_title">Licencijos</string>
-    <string name="about_privacy_policy_title">Privatumo Politika</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Autorius</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Sekti GitHub svetainėje</string>
     <string name="about_author_twitter_title">Sekti Twitter svetainėje</string>
 </resources>

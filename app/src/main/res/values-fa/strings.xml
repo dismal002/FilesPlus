@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="ImpliedQuantity">
 
-    <string name="app_name">پرونده‌های متریال</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">بستن</string>
     <string name="copy">رونوشت</string>
@@ -562,9 +562,9 @@
     <string name="about_version_title">نگارش</string>
     <string name="about_github_title">دیدن در گیت‌هاب</string>
     <string name="about_licenses_title">پروانه‌ها</string>
-    <string name="about_privacy_policy_title">سیاست حفظ حریم خصوصی</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">نویسنده</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">پی‌گیری در گیت‌هاب</string>
     <string name="about_author_twitter_title">پی‌گیری در توییتر</string>
 </resources>

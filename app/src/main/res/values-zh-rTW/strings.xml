@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">質感檔案</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">關閉</string>
     <string name="copy">複製</string>
@@ -638,9 +638,9 @@
     <string name="about_version_title">版本</string>
     <string name="about_github_title">在 GitHub 上查看</string>
     <string name="about_licenses_title">許可證</string>
-    <string name="about_privacy_policy_title">隱私權政策</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">作者</string>
     <string name="about_author_name_title">張海</string>
     <string name="about_author_github_title">在 GitHub 上關注</string>
-    <string name="about_author_twitter_title">在 Twitter 上關注</string>
+    <string name="about_author_twitter_title">在 X 上關注</string>
 </resources>

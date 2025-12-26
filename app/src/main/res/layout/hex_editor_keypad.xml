@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/keyPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:visibility="gone"
+    app:flexDirection="row"
+    app:flexWrap="wrap"
+    app:justifyContent="center">
+
+    <!-- Hex Keys Group -->
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="center">
+
+        <Button android:id="@+id/button0" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button1" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button2" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button3" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button4" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button5" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button6" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="6" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button7" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="7" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button8" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="8" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/button9" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="9" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonA" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="A" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonB" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="B" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonC" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="C" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonD" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="D" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonE" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="E" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+        <Button android:id="@+id/buttonF" style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="F" android:minWidth="40dp" android:padding="0dp" app:layout_flexGrow="1" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <!-- Navigation and Actions Group -->
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:flexWrap="wrap"
+        app:justifyContent="center">
+
+        <!-- Arrows T-Shape container -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexDirection="column"
+            app:alignItems="center"
+            android:layout_margin="2dp">
+
+            <Button android:id="@+id/buttonUp" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="▲" android:padding="0dp" />
+            
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flexDirection="row">
+                <Button android:id="@+id/buttonLeft" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="◀" android:padding="0dp" />
+                <Button android:id="@+id/buttonDown" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="▼" android:padding="0dp" />
+                <Button android:id="@+id/buttonRight" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="▶" android:padding="0dp" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <!-- Other nav keys -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexDirection="column"
+            android:layout_margin="2dp"
+            app:justifyContent="center">
+            <Button android:id="@+id/buttonHome" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="«" android:padding="0dp" />
+            <Button android:id="@+id/buttonEnd" style="?android:attr/buttonStyleSmall" android:layout_width="48dp" android:layout_height="wrap_content" android:text="»" android:padding="0dp" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <!-- Actions -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexDirection="column"
+            android:layout_margin="2dp">
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flexDirection="row">
+                <Button android:id="@+id/buttonDelete" style="?android:attr/buttonStyleSmall" android:layout_width="64dp" android:layout_height="wrap_content" android:text="DEL" android:padding="0dp" />
+                <Button android:id="@+id/buttonBk" style="?android:attr/buttonStyleSmall" android:layout_width="64dp" android:layout_height="wrap_content" android:text="⌫" android:padding="0dp" />
+            </com.google.android.flexbox.FlexboxLayout>
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:flexDirection="row">
+                <Button android:id="@+id/buttonInsert" style="?android:attr/buttonStyleSmall" android:layout_width="64dp" android:layout_height="wrap_content" android:text="INS" android:padding="0dp" />
+                <Button android:id="@+id/buttonTab" style="?android:attr/buttonStyleSmall" android:layout_width="64dp" android:layout_height="wrap_content" android:text="↹" android:padding="0dp" />
+            </com.google.android.flexbox.FlexboxLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+</com.google.android.flexbox.FlexboxLayout>

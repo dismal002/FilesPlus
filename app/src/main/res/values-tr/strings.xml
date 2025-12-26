@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">Materyal Dosyalar</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Kapat</string>
     <string name="copy">Kopyala</string>
@@ -541,9 +541,9 @@
     <string name="about_version_title">Sürüm</string>
     <string name="about_github_title">GitHub\'da görüntüle</string>
     <string name="about_licenses_title">Lisanslar</string>
-    <string name="about_privacy_policy_title">Gizlilik politikası</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Yazar</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">GitHub\'da takip edin</string>
     <string name="about_author_twitter_title">Twitter\'da takip edin</string>
 </resources>

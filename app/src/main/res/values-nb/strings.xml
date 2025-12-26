@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">Material Filer</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Lukk</string>
     <string name="copy">Kopiér</string>
@@ -668,9 +668,9 @@
     <string name="about_version_title">Versjon</string>
     <string name="about_github_title">Se på GitHub</string>
     <string name="about_licenses_title">Lisenser</string>
-    <string name="about_privacy_policy_title">Personvernregler</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Utvikler</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Følg på GitHub</string>
     <string name="about_author_twitter_title">Følg på Twitter</string>
 </resources>

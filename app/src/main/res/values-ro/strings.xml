@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">Material Files</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Închide</string>
     <string name="copy">Copiază</string>
@@ -607,9 +607,9 @@
     <string name="about_version_title">Versiune</string>
     <string name="about_github_title">Vizualizează pe GitHub</string>
     <string name="about_licenses_title">Licențe</string>
-    <string name="about_privacy_policy_title">Politică de Confidențialitate</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Autor</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Urmărește pe GitHub</string>
     <string name="about_author_twitter_title">Urmărește pe Twitter</string>
 </resources>

@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">Material Files</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Close</string>
     <string name="copy">Copy</string>
@@ -228,6 +228,7 @@
     <string name="file_open_as_title">Open as…</string>
     <string name="file_open_as_title_format">Open “%1$s” as</string>
     <string name="file_open_as_type_text">Text</string>
+    <string name="file_open_as_type_hex">Binary</string>
     <string name="file_open_as_type_image">Image</string>
     <string name="file_open_as_type_audio">Audio</string>
     <string name="file_open_as_type_video">Video</string>
@@ -707,6 +708,28 @@
     <string name="text_editor_reload_message">Are you sure you want to reload? Unsaved changes to this document will be lost.</string>
     <string name="text_editor_encoding">Encoding</string>
     <string name="text_editor_close_message">Are you sure you want to discard unsaved changes to this document?</string>
+    <string name="text_editor_undo">Undo</string>
+    <string name="text_editor_redo">Redo</string>
+    <string name="text_editor_find_replace">Find &amp; Replace</string>
+    <string name="text_editor_find_hint">Find</string>
+    <string name="text_editor_replace_hint">Replace</string>
+    <string name="text_editor_find_previous">Previous</string>
+    <string name="text_editor_find_next">Next</string>
+    <string name="text_editor_regex">Regex</string>
+    <string name="text_editor_replace">Replace</string>
+    <string name="text_editor_replace_all">Replace All</string>
+    <string name="text_editor_matches_format">%1$d of %2$d</string>
+    <string name="text_editor_no_matches">No matches</string>
+    <string name="text_editor_replace_all_success">Replaced %1$d occurrences</string>
+    
+    <!-- Hex Editor -->
+    <string name="hex_editor_title">Binary editor</string>
+    <string name="hex_viewer_title_format">%1$s - Binary editor</string>
+    <string name="hex_viewer_error_no_file">No file specified</string>
+    <string name="hex_editor_goto">Go to Position</string>
+    <string name="hex_editor_save_success">File saved successfully</string>
+    <string name="hex_editor_save_error">Error saving file</string>
+    <string name="find_next">Find next</string>
 
     <string name="ftp_server_title">FTP server</string>
     <string name="ftp_server_state_title">Status</string>
@@ -792,11 +815,11 @@
     <string name="about_version_title">Version</string>
     <string name="about_github_title">View on GitHub</string>
     <string name="about_licenses_title">Licenses</string>
-    <string name="about_privacy_policy_title">Privacy policy</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Author</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Follow on GitHub</string>
-    <string name="about_author_twitter_title">Follow on Twitter</string>
+    <string name="about_author_twitter_title">Follow on X</string>
 
     <string name="shortcut_downloads_title" translatable="false">@string/navigation_standard_directory_downloads</string>
     <string name="shortcut_ftp_server_title" translatable="false">@string/ftp_server_title</string>

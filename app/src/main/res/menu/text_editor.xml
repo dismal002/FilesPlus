@@ -19,14 +19,32 @@
         tools:ignore="AlwaysShowAction" />
 
     <item
+        android:id="@+id/action_undo"
+        android:orderInCategory="200"
+        android:title="@string/text_editor_undo"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_redo"
+        android:orderInCategory="200"
+        android:title="@string/text_editor_redo"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_find_replace"
+        android:orderInCategory="300"
+        android:title="@string/text_editor_find_replace"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_reload"
-        android:orderInCategory="100"
+        android:orderInCategory="400"
         android:title="@string/reload"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_encoding"
-        android:orderInCategory="100"
+        android:orderInCategory="500"
         android:title="@string/text_editor_encoding"
         app:showAsAction="never">
         <menu />

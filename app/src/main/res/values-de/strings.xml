@@ -7,7 +7,7 @@
 
 <resources>
 
-    <string name="app_name">Material Files</string>
+    <string name="app_name">Files+</string>
 
     <string name="close">Schließen</string>
     <string name="copy">Kopieren</string>
@@ -668,9 +668,9 @@
     <string name="about_version_title">Version</string>
     <string name="about_github_title">Auf GitHub anzeigen</string>
     <string name="about_licenses_title">Lizenzen</string>
-    <string name="about_privacy_policy_title">Datenschutzerklärung</string>
+    <!-- Privacy policy string removed - app no longer collects data -->
     <string name="about_author_title">Autor</string>
-    <string name="about_author_name_title">Hai Zhang</string>
+    <string name="about_author_name_title">Dismal</string>
     <string name="about_author_github_title">Auf GitHub folgen</string>
-    <string name="about_author_twitter_title">Auf Twitter folgen</string>
+    <string name="about_author_twitter_title">Auf X folgen</string>
 </resources>
