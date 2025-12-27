@@ -869,8 +869,13 @@ class TextEditorFragment : Fragment(), ConfirmReloadDialogFragment.Listener,
             return
         }
         val useRegex = barBinding.regexCheckBox.isChecked
-        val options = EditorSearcher.SearchOptions(useRegex, false)
-        binding.textEdit.searcher.search(query, options)
+        val options = EditorSearcher.SearchOptions(false, useRegex)
+        try {
+            binding.textEdit.searcher.search(query, options)
+        } catch (e: java.util.regex.PatternSyntaxException) {
+            binding.textEdit.searcher.stopSearch()
+            barBinding.matchCountText.text = "Bad regex"
+        }
         
         // Update match count (this might need to be done via a listener in SoraEditor if available)
         // For now, we'll leave it or check if searcher has a result count.

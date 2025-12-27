@@ -63,6 +63,7 @@ import com.dismal.files.databinding.FileListFragmentBottomBarIncludeBinding
 import com.dismal.files.databinding.FileListFragmentContentIncludeBinding
 import com.dismal.files.databinding.FileListFragmentIncludeBinding
 import com.dismal.files.databinding.FileListFragmentSpeedDialIncludeBinding
+import com.dismal.files.diskimage.DiskImageFlashDialogFragment
 import com.dismal.files.file.FileItem
 import com.dismal.files.file.MimeType
 import com.dismal.files.file.asMimeTypeOrNull
@@ -70,6 +71,7 @@ import com.dismal.files.file.extension
 import com.dismal.files.file.fileProviderUri
 import com.dismal.files.file.isApk
 import com.dismal.files.file.isImage
+import com.dismal.files.file.isSupportedDiskImage
 import com.dismal.files.filejob.FileJobService
 import com.dismal.files.filelist.FileSortOptions.By
 import com.dismal.files.filelist.FileSortOptions.Order
@@ -141,6 +143,7 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
     ShowRequestNotificationPermissionRationaleDialogFragment.Listener,
     ShowRequestNotificationPermissionInSettingsRationaleDialogFragment.Listener,
     ShowRequestStoragePermissionRationaleDialogFragment.Listener,
+    DiskImageFlashDialogFragment.Listener,
     ShowRequestStoragePermissionInSettingsRationaleDialogFragment.Listener {
     private val requestAllFilesAccessLauncher = registerForActivityResult(
         RequestAllFilesAccessContract(), this::onRequestAllFilesAccessResult
@@ -1214,6 +1217,10 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
             openApk(file)
             return
         }
+        if (file.isSupportedDiskImage) {
+            openDiskImageFlashDialog(file)
+            return
+        }
         if (file.isListable) {
             navigateTo(file.listablePath)
             return
@@ -1250,6 +1257,10 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
 
     override fun viewApk(file: FileItem) {
         navigateTo(file.listablePath)
+    }
+
+    private fun openDiskImageFlashDialog(file: FileItem) {
+        DiskImageFlashDialogFragment.show(file, this)
     }
 
     override fun openFileWith(file: FileItem) {

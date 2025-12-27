@@ -53,7 +53,7 @@ import org.exbin.bined.basic.MovementDirection
 import org.exbin.bined.basic.SelectingMode
 import org.exbin.bined.android.basic.DefaultCodeAreaCommandHandler
 
-class HexEditorFragment : Fragment() {
+class HexEditorFragment : Fragment(), com.dismal.files.viewer.text.ConfirmCloseDialogFragment.Listener {
     private val args by args<Args>()
     private lateinit var argsFile: Path
 
@@ -61,8 +61,20 @@ class HexEditorFragment : Fragment() {
     private lateinit var codeArea: MaterialHexView
     private lateinit var fileHandler: BinEdFileHandler
     private lateinit var segmentsRepository: SegmentsRepository
+    private lateinit var onBackPressedCallback: androidx.activity.OnBackPressedCallback
 
     private var lastSearchPattern: ByteArray? = null
+    
+    private var isModified = false
+        set(value) {
+            if (field != value) {
+                field = value
+                updateTitle()
+                onBackPressedCallback.isEnabled = value
+            }
+        }
+    
+    private var isBindingData = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +108,14 @@ class HexEditorFragment : Fragment() {
         }
 
         initializeHexEditor()
+        
+        onBackPressedCallback = object : androidx.activity.OnBackPressedCallback(false) {
+            override fun handleOnBackPressed() {
+                showConfirmExitDialog()
+            }
+        }
+        activity.onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        
         loadFile()
     }
 
@@ -118,6 +138,9 @@ class HexEditorFragment : Fragment() {
             // Set up listeners
             fileHandler.undoRedo.addChangeListener(BinaryDataUndoRedoChangeListener {
                 updateUndoRedoState()
+                if (!isBindingData) {
+                    isModified = true
+                }
                 codeArea.invalidate()
             })
             
@@ -288,10 +311,14 @@ class HexEditorFragment : Fragment() {
         }
 
     fun onSupportNavigateUp(): Boolean {
+        if (isModified) {
+            showConfirmExitDialog()
+            return true
+        }
         return false
     }
 
-    private fun finish() {
+    override fun finish() {
         requireActivity().finish()
     }
 
@@ -304,6 +331,7 @@ class HexEditorFragment : Fragment() {
             try {
                 val uri = argsFile.fileProviderUri
                 withContext(Dispatchers.IO) {
+                    isBindingData = true
                     fileHandler.openFile(requireContext().contentResolver, uri, fileHandler.fileHandlingMode)
                 }
 
@@ -314,6 +342,10 @@ class HexEditorFragment : Fragment() {
                 binding.progress.fadeOutUnsafe()
                 binding.errorText.fadeOutUnsafe()
                 binding.codeArea.fadeInUnsafe()
+                
+                
+                isBindingData = false
+                isModified = false
                 
                 updateTitle()
                 
@@ -335,6 +367,7 @@ class HexEditorFragment : Fragment() {
                 }
 
                 showToast(R.string.hex_editor_save_success)
+                isModified = false
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -360,7 +393,11 @@ class HexEditorFragment : Fragment() {
 
     private fun updateTitle() {
         val fileName = argsFile.fileName.toString()
-        requireActivity().title = getString(R.string.hex_viewer_title_format, fileName)
+        requireActivity().title = if (isModified) {
+            getString(R.string.text_editor_title_changed_format, fileName)
+        } else {
+            getString(R.string.hex_viewer_title_format, fileName)
+        }
     }
 
     private fun showGoToDialog() {
@@ -436,4 +473,12 @@ class HexEditorFragment : Fragment() {
 
     @Parcelize
     class Args(val intent: Intent) : ParcelableArgs
+    private fun showConfirmExitDialog() {
+        com.dismal.files.viewer.text.ConfirmCloseDialogFragment.show(this)
+    }
+    
+    // We implement the listener from ConfirmCloseDialogFragment if we want to reuse it nicely,
+    // assuming it calls a method on us.
+    // The ConfirmCloseDialogFragment in text package calls (parentFragment as Listener).finish()
+    // So we need to implement that interface.
 }

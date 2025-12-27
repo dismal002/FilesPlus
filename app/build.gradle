@@ -148,6 +148,10 @@ dependencies {
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
     implementation 'com.drakeet.drawer:drawer:1.0.3'
     implementation 'com.h6ah4i.android.materialshadowninepatch:materialshadowninepatch:1.0.0'
+    
+    // USB mass storage dependencies for disk image flashing
+    implementation 'me.jahnen.libaums:core:0.10.0'
+    implementation 'me.jahnen.libaums:libusbcommunication:0.3.0'
     implementation 'com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:1.0.0'
     // SMBJ 0.12.0 breaks anonymous authentication: https://github.com/hierynomus/smbj/issues/792
     //noinspection GradleDependency

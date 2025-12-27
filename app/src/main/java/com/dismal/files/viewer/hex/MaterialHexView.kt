@@ -16,6 +16,10 @@ import android.view.inputmethod.InputConnection
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.dismal.files.R
+import android.widget.OverScroller
+import android.view.VelocityTracker
+import android.view.ViewConfiguration
+import kotlin.math.roundToInt
 import org.exbin.auxiliary.binary_data.BinaryData
 import org.exbin.auxiliary.binary_data.EditableBinaryData
 import org.exbin.bined.CodeAreaSection
@@ -108,6 +112,35 @@ class MaterialHexView @JvmOverloads constructor(
         charWidth = textPaint.measureText("A")
     }
 
+    private val scroller = OverScroller(context)
+    private var velocityTracker: VelocityTracker? = null
+    private val minFlingVelocity = ViewConfiguration.get(context).scaledMinimumFlingVelocity
+    private val maxFlingVelocity = ViewConfiguration.get(context).scaledMaximumFlingVelocity
+
+    override fun computeScroll() {
+        if (scroller.computeScrollOffset()) {
+            offsetX = scroller.currX.toFloat()
+            offsetY = scroller.currY.toFloat()
+            
+            // Re-clamp in case of overscroll
+            val dataSize = binaryData?.dataSize ?: 0
+            val rows = (dataSize + bytesPerRow - 1) / bytesPerRow
+            val contentHeight = (rows * rowHeight).toInt() + paddingBottom + paddingTop
+            val hexColStart = 10 * charWidth
+            val asciiColStart = hexColStart + (bytesPerRow * 3 + 1) * charWidth
+            val totalWidth = asciiColStart + bytesPerRow * charWidth
+            
+            offsetY = offsetY.coerceIn(0f, (contentHeight - height).coerceAtLeast(0).toFloat())
+            offsetX = offsetX.coerceIn(0f, (totalWidth - width).coerceAtLeast(0f).toFloat())
+
+            if (scroller.isFinished) {
+               // scroller just finished
+            } else {
+               postInvalidateOnAnimation()
+            }
+        }
+    }
+
     fun setOnCaretMovedListener(listener: (Long) -> Unit) {
         onCaretMovedListener = listener
     }
@@ -192,8 +225,16 @@ class MaterialHexView @JvmOverloads constructor(
     private var isScrolling = false
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (velocityTracker == null) {
+            velocityTracker = VelocityTracker.obtain()
+        }
+        velocityTracker?.addMovement(event)
+
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                if (!scroller.isFinished) {
+                    scroller.forceFinished(true)
+                }
                 lastTouchX = event.x
                 lastTouchY = event.y
                 isScrolling = false
@@ -201,19 +242,58 @@ class MaterialHexView @JvmOverloads constructor(
             MotionEvent.ACTION_MOVE -> {
                 val dx = lastTouchX - event.x
                 val dy = lastTouchY - event.y
-                if (abs(dx) > 10 || abs(dy) > 10) {
+                if (!isScrolling && (abs(dx) > 10 || abs(dy) > 10)) {
                     isScrolling = true
                 }
                 if (isScrolling) {
-                    offsetX = (offsetX + dx).coerceAtLeast(0f)
-                    offsetY = (offsetY + dy).coerceAtLeast(0f)
+                    val data = binaryData
+                    if (data != null) {
+                        val dataSize = data.dataSize
+                        val rows = (dataSize + bytesPerRow - 1) / bytesPerRow
+                        val contentHeight = (rows * rowHeight).toInt() + paddingBottom + paddingTop
+                        
+                        // Calculate total width
+                        val hexColStart = 10 * charWidth
+                        val asciiColStart = hexColStart + (bytesPerRow * 3 + 1) * charWidth
+                        val totalWidth = asciiColStart + bytesPerRow * charWidth
+
+                        offsetX = (offsetX + dx).coerceIn(0f, (totalWidth - width).coerceAtLeast(0f).toFloat())
+                        offsetY = (offsetY + dy).coerceIn(0f, (contentHeight - height).coerceAtLeast(0).toFloat())
+                    }
+                    
                     lastTouchX = event.x
                     lastTouchY = event.y
                     invalidate()
                 }
             }
-            MotionEvent.ACTION_UP -> {
-                if (!isScrolling) {
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                if (isScrolling) {
+                     // Fling
+                    velocityTracker?.computeCurrentVelocity(1000, maxFlingVelocity.toFloat())
+                    val velocityX = velocityTracker?.xVelocity?.toInt() ?: 0
+                    val velocityY = velocityTracker?.yVelocity?.toInt() ?: 0
+                    
+                    if (abs(velocityY) > minFlingVelocity || abs(velocityX) > minFlingVelocity) {
+                         val data = binaryData
+                         if (data != null) {
+                            val dataSize = data.dataSize
+                            val rows = (dataSize + bytesPerRow - 1) / bytesPerRow
+                            val contentHeight = (rows * rowHeight).toInt() + paddingBottom + paddingTop
+                            
+                            val hexColStart = 10 * charWidth
+                            val asciiColStart = hexColStart + (bytesPerRow * 3 + 1) * charWidth
+                            val totalWidth = asciiColStart + bytesPerRow * charWidth
+                            
+                            scroller.fling(
+                                offsetX.toInt(), offsetY.toInt(),
+                                -velocityX, -velocityY,
+                                0, (totalWidth - width).coerceAtLeast(0f).toInt(),
+                                0, (contentHeight - height).coerceAtLeast(0).toInt()
+                            )
+                            postInvalidateOnAnimation()
+                         }
+                    }
+                } else if (event.action == MotionEvent.ACTION_UP) {
                     requestFocus()
                     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
@@ -237,6 +317,8 @@ class MaterialHexView @JvmOverloads constructor(
                         caretPosition = (row * bytesPerRow + col).toLong()
                     }
                 }
+                velocityTracker?.recycle()
+                velocityTracker = null
             }
         }
         return true
@@ -378,10 +460,15 @@ class MaterialHexView @JvmOverloads constructor(
         }
         
         // Ensure visible horizontally
+        // Ensure visible horizontally
         if (caretX < offsetX) {
             offsetX = caretX
         } else if (caretX + charWidth > offsetX + width) {
             offsetX = (caretX + charWidth - width).coerceAtLeast(0f)
+        }
+        
+        if (!scroller.isFinished) {
+            scroller.abortAnimation()
         }
         
         invalidate()
