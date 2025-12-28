@@ -72,6 +72,8 @@ import com.dismal.files.file.fileProviderUri
 import com.dismal.files.file.isApk
 import com.dismal.files.file.isImage
 import com.dismal.files.file.isSupportedDiskImage
+import com.dismal.files.file.isVentoyPackage
+import com.dismal.files.ventoy.VentoyInstallDialogFragment
 import com.dismal.files.filejob.FileJobService
 import com.dismal.files.filelist.FileSortOptions.By
 import com.dismal.files.filelist.FileSortOptions.Order
@@ -144,6 +146,7 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
     ShowRequestNotificationPermissionInSettingsRationaleDialogFragment.Listener,
     ShowRequestStoragePermissionRationaleDialogFragment.Listener,
     DiskImageFlashDialogFragment.Listener,
+    VentoyInstallDialogFragment.Listener,
     ShowRequestStoragePermissionInSettingsRationaleDialogFragment.Listener {
     private val requestAllFilesAccessLauncher = registerForActivityResult(
         RequestAllFilesAccessContract(), this::onRequestAllFilesAccessResult
@@ -1221,6 +1224,10 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
             openDiskImageFlashDialog(file)
             return
         }
+        if (file.isVentoyPackage) {
+            openVentoyInstallDialog(file)
+            return
+        }
         if (file.isListable) {
             navigateTo(file.listablePath)
             return
@@ -1261,6 +1268,10 @@ class FileListFragment : Fragment(), BreadcrumbLayout.Listener, FileListAdapter.
 
     private fun openDiskImageFlashDialog(file: FileItem) {
         DiskImageFlashDialogFragment.show(file, this)
+    }
+
+    private fun openVentoyInstallDialog(file: FileItem) {
+        VentoyInstallDialogFragment.show(file, this)
     }
 
     override fun openFileWith(file: FileItem) {

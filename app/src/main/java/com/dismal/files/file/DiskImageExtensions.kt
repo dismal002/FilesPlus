@@ -6,6 +6,7 @@
 package com.dismal.files.file
 
 import com.dismal.files.filelist.extension
+import com.dismal.files.filelist.name
 
 /**
  * Extensions for detecting and handling disk image files
@@ -23,7 +24,11 @@ val MimeType.isDiskImage: Boolean
 val FileItem.isDiskImage: Boolean
     get() = mimeType.isDiskImage || extension.lowercase() in DISK_IMAGE_EXTENSIONS
 
+val FileItem.isVentoyPackage: Boolean
+    get() = path.name.lowercase().startsWith("ventoy-") && (path.name.lowercase().endsWith(".tar.gz") || path.name.lowercase().endsWith(".tgz"))
+
 private val DISK_IMAGE_EXTENSIONS = setOf(
+
     "img", "iso", "bin", "raw", "dd", "dmg"
 )
 

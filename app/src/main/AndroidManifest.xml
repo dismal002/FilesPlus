@@ -284,6 +284,12 @@
             android:launchMode="singleTop"
             android:theme="@style/Theme.MaterialFiles" />
 
+        <!-- Easter Egg Activity -->
+        <activity
+            android:name="com.dismal.files.easteregg.MLandActivity"
+            android:theme="@style/Theme.MaterialFiles"
+            android:exported="false" />
+
         <activity
             android:name="com.dismal.files.fileaction.ArchivePasswordDialogActivity"
             android:autoRemoveFromRecents="true"

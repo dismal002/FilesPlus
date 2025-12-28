@@ -5,6 +5,7 @@
 
 package com.dismal.files.about
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,12 +15,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.dismal.files.databinding.AboutFragmentBinding
+import com.dismal.files.easteregg.MLandActivity
 import com.dismal.files.ui.LicensesDialogFragment
 import com.dismal.files.util.createViewIntent
 import com.dismal.files.util.startActivitySafe
 
 class AboutFragment : Fragment() {
     private lateinit var binding: AboutFragmentBinding
+    private var versionTapCount = 0
+    private var lastTapTime = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +51,26 @@ class AboutFragment : Fragment() {
         }
         binding.authorXLayout.setOnClickListener {
             startActivitySafe(AUTHOR_X_URI.createViewIntent())
+        }
+        
+        // Easter egg: tap version 7 times to launch Flappy Droid
+        binding.versionLayout.setOnClickListener {
+            val currentTime = System.currentTimeMillis()
+            
+            // Reset counter if more than 2 seconds have passed since last tap
+            if (currentTime - lastTapTime > 2000) {
+                versionTapCount = 0
+            }
+            
+            versionTapCount++
+            lastTapTime = currentTime
+            
+            if (versionTapCount >= 7) {
+                // Launch easter egg
+                val intent = Intent(requireContext(), MLandActivity::class.java)
+                startActivity(intent)
+                versionTapCount = 0 // Reset counter
+            }
         }
     }
 

@@ -823,4 +823,17 @@
 
     <string name="shortcut_downloads_title" translatable="false">@string/navigation_standard_directory_downloads</string>
     <string name="shortcut_ftp_server_title" translatable="false">@string/ftp_server_title</string>
+    <string name="ventoy_install_title">Install Ventoy to USB</string>
+    <string name="ventoy_install_select_device">Select USB Device:</string>
+    <string name="ventoy_install_no_devices">No USB devices found.\nConnect a USB drive and try again.</string>
+    <string name="ventoy_install_extracting">Extracting Ventoy images…</string>
+    <string name="ventoy_install_writing_boot">Writing boot image…</string>
+    <string name="ventoy_install_writing_core">Writing core image…</string>
+    <string name="ventoy_install_writing_system">Writing Ventoy system…</string>
+    <string name="ventoy_install_finalizing">Finalizing…</string>
+    <string name="ventoy_install_complete">Installation complete!</string>
+    <string name="ventoy_install_success">Ventoy installed successfully!</string>
+    <string name="ventoy_install_failed">Installation failed: %1$s</string>
+    <string name="ventoy_install_button">Install</string>
 </resources>
+

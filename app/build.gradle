@@ -149,6 +149,9 @@ dependencies {
     implementation 'com.drakeet.drawer:drawer:1.0.3'
     implementation 'com.h6ah4i.android.materialshadowninepatch:materialshadowninepatch:1.0.0'
     
+    // FloatingActionButton library for easter egg
+    implementation 'com.github.clans:fab:1.6.4'
+    
     // USB mass storage dependencies for disk image flashing
     implementation 'me.jahnen.libaums:core:0.10.0'
     implementation 'me.jahnen.libaums:libusbcommunication:0.3.0'
